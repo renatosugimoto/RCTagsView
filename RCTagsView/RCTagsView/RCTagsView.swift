@@ -154,13 +154,13 @@ public class RCTagsView: UIView {
 
     override public var tintColor: UIColor! {
         didSet {
-            inputTextField.tintColor = tintColor
+//            inputTextField.tintColor = tintColor
             for button in mutableTagButtons {
                 if button.tag == default_button_tag {
-                    button.tintColor = tintColor
+//                    button.tintColor = tintColor
                     button.layer.borderColor = tintColor.cgColor
                     button.backgroundColor = button.isSelected ? tintColor : nil
-                    button.setTitleColor(tintColor, for: .normal)
+//                    button.setTitleColor(tintColor, for: .normal)
                 }
             }
         }
@@ -214,7 +214,8 @@ public class RCTagsView: UIView {
                 tagButton.tintColor = tintColor
                 tagButton.titleLabel?.lineBreakMode = .byTruncatingTail
                 tagButton.setTitle(title, for: .normal)
-                tagButton.setTitleColor(tintColor, for: .normal)
+                tagButton.backgroundColor = tintColor.withAlphaComponent(0.2)
+                tagButton.setTitleColor(.gray, for: .normal)
                 tagButton.setTitleColor(.white, for: .selected)
                 tagButton.contentEdgeInsets = UIEdgeInsetsMake(default_button_vertical_padding, default_button_horizontal_padding, default_button_vertical_padding, default_button_horizontal_padding)
                 tagButton.tag = default_button_tag
@@ -275,7 +276,7 @@ public class RCTagsView: UIView {
         if index >= 0 && index < mutableTagButtons.count {
             mutableTagButtons[index].isSelected = false
             if mutableTagButtons[index].tag == default_button_tag {
-                mutableTagButtons[index].backgroundColor = nil
+                mutableTagButtons[index].backgroundColor = tintColor.withAlphaComponent(0.2)
             }
         }
     }
@@ -445,7 +446,7 @@ public class RCTagsView: UIView {
 
     // MARK: - property accessors
 
-    fileprivate var tags: [String] {
+    public var tags: [String] {
         get {
             return mutableTags
         }
@@ -625,6 +626,3 @@ class RCInputTextField: UITextField {
         }
     }
 }
-
-
-
